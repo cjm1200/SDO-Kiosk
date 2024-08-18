@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="adminlogin.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>SDO KIOSK</title>
+  </head>
+  <body>
+    <div class="header-cont">
+        <div class="header">
+            <div class="sdo col-md-2 float-start ">
+              <img src="sdo-logo.png" alt="SDO Logo">
+              <span class="fs-1" style="font-weight: bold; font-style: roboto;color:#fff;">SDO - KIOSK</span>
+            </div>
+            <div class="col-md-2 float-end"></div>
+            <div class="col-md-2 float-end"></div>
+            <div class="col-md-2 float-start">
+              <span class="fs-1" style="font-weight: bold; color: #fff; font-style: roboto; margin-left: 60px; " id="date"></span>
+            </div>
+            <div class="col-md-2 float-end">
+              <span class="fs-1" style="font-weight: bold; color: #fff; font-style: roboto;" id="time"></span>
+            </div>
+            <div class="admin col-md-1 float-start"></div>
+            <div class="admin-logo col-md-1 float-end">
+              <a href="homepage.html"> <img src="adminc.png" alt="Admin Logo"></a>
+            </div>
+        </div>
+    </div>
+    <div class="mid">
+        <div class = "login-container col-md-6">
+            <div class = "login col-md-11">
+                <div class = "col-md-6 text-center mt-5 ">
+                <form id="loginForm" style="width:100%;;margin-right: 0px;margin-left: 0px; ">
+                    <h1 class = "fs-1 h3 mb-3"
+                    ">ADMIN LOGIN</h1>
+                    <input type = "username" id = "userName"
+                    class = "fs-2 form-control" placeholder="Username" required autofocus>
+                    <input type = "password" id = "password"
+                    placeholder = "Password" class = "fs-2 form-control">
+                    <div class = "mt-5">
+                        <button type="submit" class="btn btn-primary h-50 fs-2 w-50" style="border-radius: 9px;">Login</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <style>
+        input[type="username"] {
+            height: 80px;
+            width: 100%;
+            border-color: black;
+            background-color: #d9d9d9;
+            border-bottom-left-radius: 0px;;
+            border-bottom-right-radius: 0px;;
+            border-top-left-radius: 0px;;
+            border-top-right-radius: 0px;;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        input[type="password"] {
+            height: 80px;
+            width: 100%;
+            border-color: black;
+            background-color: #d9d9d9;
+            border-top-left-radius: 0px;;
+            border-top-right-radius: 0px;;
+            border-bottom-left-radius: 0px;;
+            border-bottom-right-radius: 0px;;
+        }
+        .h3 {
+            font-style: roboto;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        </style>
+        <script src="adminlogin.js"></script>
+    </div>
+    <div class="footer-container col-md-12">
+      <div class = "footer">
+          <div class = "logo-container col-md-5">
+            <div class = "logotop-container"></div>
+            <div class = "logobot-container">
+              <img src="depedlogo.jpeg" alt="Logo">
+            </div>
+          </div>
+
+          <div class = "qr col-md-2">
+            <div class = "qr-container">
+              <img id="myImage" src="qr.jpeg" alt="SCAN THE QR CODE FOR FEEDBACK" class="qr-image">
+
+                  <!-- The Modal -->
+                  <div id="myModal" class="modal">
+                      <span class="close">&times;</span>
+                      <img class="modal-content" id="img01">
+                      <div id="caption"></div>
+                  </div>
+              <script src="qr.js"></script>
+            </div>
+
+            <div class = "scan-container">
+              <p class="scan">
+                SCAN THE QR CODE FOR
+              </p>
+              <p class = "scan">
+                FEEDBACK
+              </p>
+            </div>
+
+          </div>
+          <div class = "slogan-container col-md-5">
+            <div class = "slogantop-container"></div>
+            <div class = "sloganbot-container">
+              <p class = "slogan fs-1">
+                "Towards a Culture of Excellence and Character"
+              </p>
+            </div>
+          </div>
+      </div>
+      
+
+    </div>
+  <script src="bgsettings.js"></script>
+  <script>
+    const dateElement = document.getElementById("date");
+    const timeElement = document.getElementById("time");
+
+    function updateDateTime() {
+    const date = new Date();
+
+    // Format the date
+    const dateString = `${date.toLocaleString("en-US", { month: "long" })} ${date.getDate()}, ${date.getFullYear()}`;
+    dateElement.innerText = dateString;
+
+    // Format the time in 12-hour format with spaces between hour, minute, and second
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const hoursString = hours.toString().padStart(2, '0');
+    const timeString = `${hoursString} : ${minutes} : ${seconds} ${ampm}`;
+    timeElement.innerText = timeString;
+    }
+
+    updateDateTime();
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+
+  </script>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
